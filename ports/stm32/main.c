@@ -612,7 +612,11 @@ soft_reset:
 
     // run boot.py, if it exists
     // TODO perhaps have pyb.reboot([bootpy]) function to soft-reboot and execute custom boot.py
+#if 0
     if (reset_mode == 1 || reset_mode == 3) {
+#else
+    {
+#endif
         const char *boot_py = "boot.py";
         int ret = pyexec_file_if_exists(boot_py);
         if (ret & PYEXEC_FORCED_EXIT) {
